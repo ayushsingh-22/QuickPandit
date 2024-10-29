@@ -1,13 +1,18 @@
+package com.example.quickastro.login
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -27,7 +32,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -35,12 +40,10 @@ import com.example.quickastro.R
 import com.example.quickastro.ui.theme.hindi_font
 import com.example.quickastro.ui.theme.lora_font
 
-
-@Preview(showBackground = true)
 @Composable
-fun LoginScreen(navController: NavHostController) {
+fun mobile_login(navController: NavHostController) {
     Card(modifier = Modifier.fillMaxSize()) {
-        var email by remember { mutableStateOf("") }
+        var mobileNumber by remember { mutableStateOf("") }
 
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
@@ -71,7 +74,7 @@ fun LoginScreen(navController: NavHostController) {
 
                 Column(modifier = Modifier.offset(x = (-105).dp, y = 98.dp)) {
                     Text(
-                        text = "Email/Mobile no.",
+                        text = "Mobile Number",
                         fontFamily = FontFamily.SansSerif,
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Normal,
@@ -79,11 +82,15 @@ fun LoginScreen(navController: NavHostController) {
                     )
 
                     OutlinedTextField(
-                        value = email,
+                        value = mobileNumber,
                         singleLine = true,
-                        onValueChange = { email = it },
-                        label = { Text("Enter detail") },
-                        modifier = Modifier.clip(RectangleShape)
+                        onValueChange = { mobileNumber = it },
+                        label = { Text("Enter mobile number") },
+                        modifier = Modifier.clip(RectangleShape),
+                        keyboardOptions = KeyboardOptions.Default.copy(
+                            keyboardType = KeyboardType.Number
+                        )
+
                     )
 
                     Spacer(Modifier.height(10.dp))
@@ -93,11 +100,38 @@ fun LoginScreen(navController: NavHostController) {
                         modifier = Modifier.size(280.dp, 40.dp),
                         shape = RoundedCornerShape(5.dp),
                         colors = ButtonDefaults.buttonColors(Color.Red)
-                        ) {
+                    ) {
                         Text("Send OTP",
                             fontFamily = FontFamily.SansSerif,
                             fontWeight = FontWeight.Normal,
-                           fontSize = 18.sp)
+                            fontSize = 16.sp)
+                    }
+
+                    Spacer(Modifier.height(20.dp))
+
+                    Button(
+                        onClick = { navController.navigate("email") },
+                        modifier = Modifier.size(280.dp, 40.dp),
+                        shape = RoundedCornerShape(5.dp),
+                        colors = ButtonDefaults.buttonColors(Color.Red)
+                    ) {
+                        Row(modifier = Modifier.offset( y=2.dp)) {
+
+                            Image(
+                                painter = painterResource(R.drawable.img_1),
+                                contentDescription = "Pattern Background",
+                                contentScale = ContentScale.Fit,
+                                modifier = Modifier.size(20.dp)
+                            )
+                            Spacer(Modifier.width(9.dp))
+                            Text(
+                                text = "Continue With Email",
+                                fontFamily = FontFamily.SansSerif,
+                                fontWeight = FontWeight.Normal,
+                                fontSize = 15.sp,
+                            )
+                        }
+
                     }
 
                     Spacer(Modifier.height(20.dp))
@@ -113,7 +147,7 @@ fun LoginScreen(navController: NavHostController) {
             }
 
             Box(modifier = Modifier.fillMaxSize()) {
-                
+
                 Box(){
 
                     Image(
@@ -150,5 +184,3 @@ fun LoginScreen(navController: NavHostController) {
 
     }
 }
-
-

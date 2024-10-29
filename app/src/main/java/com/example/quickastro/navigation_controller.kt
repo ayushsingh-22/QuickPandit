@@ -1,28 +1,31 @@
 package com.example.quickastro
 
-import LoginScreen
-import LoginScreen2
+import otpScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.quickastro.login.logout
+import com.example.quickastro.login.mobile_login
 import com.example.quickastro.login.profile
+import com.example.quickastro.login.splashScreen
 import com.example.quickastro.login.update_profile
-import splashScreen
+import email_Login
 
 @Composable
 fun navigation(modifier: Modifier = Modifier) {
 
     val navcontrol = rememberNavController()
-    NavHost(navController = navcontrol, startDestination = "splash") {
+    NavHost(navController = navcontrol, startDestination = "email") {
 
-        composable("home") { LoginScreen(navcontrol) }
+        composable("email") { email_Login(navcontrol) }
+
+        composable("mobileNo") { mobile_login(navcontrol) }
 
         composable("splash") { splashScreen(navcontrol) }
 
-        composable("otp") { LoginScreen2(navcontrol) }
+        composable("otp") { otpScreen(navcontrol) }
 
         composable("profile") { profile(navcontrol) }
 

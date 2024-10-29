@@ -1,6 +1,6 @@
 package com.example.quickastro
 
-import LoginScreen
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -19,8 +19,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
                     navigation()
-//                    update_profile()
-//                    logout()
+
                 }
             }
         }
